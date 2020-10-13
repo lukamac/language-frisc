@@ -1,0 +1,18 @@
+{
+  "name": "language-frisc",
+  "version": "0.0.0",
+  "description": "Atom language support for FRISC assembly",
+  "keywords": [
+    "language",
+    "grammar",
+    "tree-sitter"
+  ],
+  "repository": "https://github.com/atom/language-frisc",
+  "license": "MIT",
+  "engines": {
+    "atom": ">=1.0.0 <2.0.0"
+  },
+  "dependencies": {
+    "tree-sitter-frisc": "^1.0.0"
+  }
+}

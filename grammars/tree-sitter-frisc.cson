@@ -1,0 +1,40 @@
+# If this is your first time writing a language grammar, check out:
+#   - https://flight-manual.atom.io/hacking-atom/sections/creating-a-grammar/
+
+name: 'FRISC'
+scopeName: 'source.frisc'
+type: 'tree-sitter'
+parser: 'tree-sitter-frisc'
+
+fileTypes: [
+  'a',
+  'frisc'
+]
+
+scopes:
+  'source_file': 'source.frisc'
+  'comment': 'comment.block'
+  'label': 'constant.other'
+  '''
+  jump,
+  jump_relative,
+  call,
+  ret,
+  halt
+  ''': 'keyword.control'
+  'condition': 'storage.modifier'
+  '''
+  org,
+  define_memory,
+  equ
+  ''': 'meta.preprocessor.macro'
+  'register': 'constant.variable'
+  'number': 'constant.numberic.decimal'
+  '"("': 'punctuation.section.parens.begin.bracket.round'
+  '")"': 'punctuation.section.parens.end.bracket.round'
+  '"+"': 'keyword.operator'
+  'string_literal': 'string.quoted.double'
+  'string_literal > "\\""': 'punctuation.definition.string'
+
+comments:
+  start: '; '

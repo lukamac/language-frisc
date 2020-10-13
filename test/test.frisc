@@ -1,0 +1,36 @@
+DIJELI   PUSH R1            ; Spremanje konteksta
+         PUSH R2
+         PUSH R3
+         
+         LOAD R1, (SP + 14) ; Djeljenik (Parametri sa stoga) ++
+         LOAD R2, (SP + 10) ; Djelitelj
+                            ; Inicijalizacija registara ++
+         MOVE 0, R3         ; Predznak rezultata         
+         MOVE 0, R0         ; Brojač  
+
+         OR R1, R1, R1      ; Provjera predznaka djeljenika ++
+         JR_P DALJE         ; Može i JR_NN
+         XOR R1, -1, R1
+         ADD R1, 1, R1
+         ADD R0, %D 013, R0
+         MOVE 1, R3         ; Može XOR R3, 1, R3 +
+DALJE    OR R2, R2, R2      ; Provjera predznaka djelitelja ++
+         JR_P PETLJA
+         XOR R2, -1, R2
+         ADD R2, 1, R2
+         XOR R3, 1, R3      ; Ako je R3=1 rezultat je negativan +
+
+PETLJA   SUB R1, R2, R1     ; Paziti na slučaj R1 < R2 +
+         JR_SLT PREDZNAK    ; Može i JR_N ++
+         ADD R0, 1, R0
+         JR PETLJA
+
+PREDZNAK CMP R3, 0
+         JR_EQ KRAJ         ; Može JR_Z
+         XOR R0, -1, R0     ; Pretvorba iz pozitivnog u negativan rezultat ++
+         ADD R0, 1, R0
+
+KRAJ     POP R3             ; Obnova konteksta ++
+         POP R2
+         POP R1
+         RET
