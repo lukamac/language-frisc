@@ -1,3 +1,5 @@
-# Frisc language package
+# WIP: FRISC language package
 
-A short description of your language package.
+Atom support for FRISC assembly language.
+
+Does not work yet!
